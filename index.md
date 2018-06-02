@@ -24,7 +24,7 @@ Let us learn the mechanism behind RSA algorithm :
 Generating Public Key : 
 
 ```cpp
-Select two prime no's. Suppose P = 53 and Q = 59.
+Select two prime numbers. Suppose P = 53 and Q = 59.
 		Now First part of the Public key  : n = P*Q = 3127.
 
 		
