@@ -65,7 +65,7 @@ Thus Encrypted Data $c = 89^e$ mod $n$.
 
 		Now we will decrypt $1394$ : 
 			
-Decrypted Data = $c^d mod n$. 
+Decrypted Data = $$c^d mod n$$. 
 		Thus our Encrypted Data comes out to be 89
 
 		$8 = H and I = 9$ i.e. "HI".
