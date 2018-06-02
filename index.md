@@ -64,7 +64,7 @@ Now we will encrypt “HI” :
 Convert letters to numbers : H  = 8 and I = 9
 
 			
-Thus Encrypted Data c = 89e mod n. 
+Thus Encrypted Data c = 89^e mod n. 
 		Thus our Encrypted Data comes out to be 1394
 
 
