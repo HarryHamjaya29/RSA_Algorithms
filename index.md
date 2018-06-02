@@ -56,7 +56,7 @@ Now calculate Private Key, d :
 		d = (k*Φ(n) + 1) / e for some integer k
 		For k = 2, value of d is 2011.
 ```
-
+<br>
 Now we are ready with our – Public Key ( n = 3127 and e = 3) and Private Key(d = 2011)<br>
 Now we will encrypt “HI” : 
 
