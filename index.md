@@ -47,7 +47,7 @@ Now calculate Private Key, d :
 		For k = 2, value of d is 2011.
 ```
 
-Now we are ready with our – Public Key ( n = 3127 and e = 3) and Private Key(d = 2011)
+Now we are ready with our – Public Key ( n = 3127 and e = 3) and Private Key(d = 2011)<br>
 Now we will encrypt “HI” : 
 
 ```cpp
