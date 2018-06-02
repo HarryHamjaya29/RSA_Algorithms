@@ -1,56 +1,67 @@
-# Bilangan real pada analisis numerik
-
-Komputer yang kita pakai saat ini menyimpan informasi dalam bentuk 1 dan 0 yang dinyatakan dalam tegangan yang disimpan dalam kapasitor. Lantas bagaimana bisa komputer kita saat ini dapat mengerti angka-angka lainnya mulai dari positif, negatif, nol dan bahkan pecahan yang masuk dalam kategori bilangan real? Jawabannya terdapat pada analisis numerik yang akan kita bahas kali ini.
+# RSA Algorithm
 
 <img src = "assets\new.jpg"><br>
 
-## Analisis Numerik
+RSA algorithm is asymmetric cryptography algorithm. Asymmetric actually means that it works on two different keys i.e. Public Key and Private Key. As the name describes that the Public Key is given to everyone and Private key is kept private.
+An example of asymmetric cryptography : 
+A client (for example browser) sends its public key to the server and requests for some data.
+The server encrypts the data using client’s public key and sends the encrypted data. 
+Client receives this data and decrypts it. 
+Since this is asymmetric, nobody else except browser can decrypt the data even if a third party has public key of browser.
+The idea! The idea of RSA is based on the fact that it is difficult to factorize a large integer. The public key consists of two numbers where one number is multiplication of two large prime numbers. And private key is also derived from the same two prime numbers. So if somebody can factorize the large number, the private key is compromised. Therefore encryption strength totally lies on the key size and if we double or triple the key size, the strength of encryption increases exponentially. RSA keys can be typically 1024 or 2048 bits long, but experts believe that 1024 bit keys could be broken in the near future. But till now it seems to be an infeasible task.
+Let us learn the mechanism behind RSA algorithm : 
 
-Dalam mencari solusi setiap persoalan matematika, tidak semuanya dapat dengan mudah dicari dengan menggunakan otak dan tangan ataupun kalkulator. Mungkin menyelesaikan persoalan 5X = 10 dapat dengan mudah dan secara intuisi kita langsung tahu bahwa X = 2, tetapi bagaimana jika persoalannya X45 + X23 + 23 = 0? Hal ini akan sangat sulit untuk didapatkan jawaban pastinya sehingga baik untuk dilakukan pendekatan yang disebut sebagai analisis numerik. Analisis numerik hadir sebagai bagian studi yang mempelajari algoritma penyelesaian masalah matematika melalaui pendekatan pada jawaban aslinya. Sehingga yang didapat bukanlah jawaban “tepat” tetapi adalah jawaban yang sangat mendekati jawaban itu dengan galat yang sekecil mungkin. 
-
-Demikianlah halnya yang dapat dilakukan ketika hendak merepresentasikan bilangan real dalam komputer. Tidak mungkin komputer yang jumlah kapasitornya terbatas dapat berhasil merepresentasikan semua bilangan real yang tidak terbatas. Tidak semua, berarti beberapa dapat direpresentasikan secara sepenuhnya. Ya benar, untuk beberapa jenis bilangan real, komputer dapat merepresentasikannya secara tepat walaupun tetap saja ada batas maksimum dan minimumnya sesuai dengan jumlah kapasitor tadi. 
-
-Berikut kita akan membahas bagaimana beberapa jenis bilangan real direpresentasikan dalam komputer melalui metode analisis numerik serta bagaimana error yang mungkin terjadi di dalamnya.
-
-## Bilangan Bulat
-Representasi bilangan bulat dalam computer adalah exact value. Operasi aritmatika didalamnya juga menghasilkan hal yang sama dengan prasyarat (i) hasilnya berada dalam rentang nilai angka yang dapat direpresentasikan dengan jumlah kapasitor dan (ii) setiap operasi pembagian hanya melihat hasil bilangan bulatnya saja dengan mengabaikan angka yang berada dalam koma. 
-
-Bilangan bulat non-negatif akan sangat mudah direpresentasikan. Semua digit direpresentasi-kan dengan bit 0 dan 1, sehingga dapat langsung diinterpretasikan sebagai string biner. Sebagai contoh dengan delapan bit, kita bisa menuliskan
-```cpp
-00110111 = (1 + 2 + 4 + 16 + 32) (basis 10) = 55 (basis 10)
-```
-
-Agar dapat merepresentasikan bilangan negatif juga, maka harus dilakukan pemisahan antara bilangan negatif dan positif. Idenya adalah menganggap bit pertama sebagai penanda apakah bilangan tersebut negatif (yaitu ditandai angka 1) atau positif (yaitu ditandai angka 0). Metode yang paling sering digunakan untuk menhitung nilai representasi sebuah bilangan negatif adalah dengan metode two’s complement  yaitu:
-```cpp
-	Dalam representasi dari sebuah bilangan bulat positif X, inversi setiap bit (0 ↔ 1), 
-	dan tambahkan 1 untuk mendapatkan representasi dari -X .
-```
-
-Misalkan kita memiliki delapan buah kapasitor yang merepresentasikan masing-masing sebuah bit maka kita dapat merepresentasikan seperti berikut.
-	<br>+2 	= 0000 0010 
-	<br>+1 	= 0000 0001 
-	<br>0 	= 0000 0000 
-	<br>−1 	= 1111 1111 
-	<br>−2 	= 1111 1110 
- <br>
-
-Dengan angka maksimum yang dapat direpresentasikan adalah sebesar 2n-1 – 1. Sebagai contoh, untuk 32-bit kita dapat interval angka bulat antara
-	<br>2^31 −1 = 2147483647 = (01111111 11111111 11111111 11111111)2  dan 
-	<br>−2^31 = −2147483648 = (10000000 00000000 00000000 00000000)2
-<br>
-Sebagian besar compiler tidak memberikan pesan error jika ada angka dalam program yang melewati batas interval angka kecuali dalam beberapa kasus.
-
-Demikianlah cara untuk bilangan bulat real dapat direpresentasikan dalam komputer. Error yang mungkin terjadi adalah saat melakukan pembulatan pada saat pembagian ataupun pada saat operasi yang mengakibatkan hasil berada di luat interval angka minimum dan maksimum yang dapat direpresentasikan oleh komputer. Untuk mengatisipasi error ini maka harus dipertimbangkan metode kita mencari hasil dan melihatnya, apakah memang tetap valid apabila menggunakan operasi tersebut dengan menggunakan bilangan bulat apa tidak. Karena masalah ini pastinya ada dan tidak mungkin untuk dihilangan ketika berbicara bilangan bulat dan komputer.
-
-
-## Bilangan Pecahan
-Dalam komputer tidak ada bilangan rasional, namun semuanya dapat direpresentasikan dengan presisi yang sangat terbatas. Metode yang digunakan adalah dengan membagi setiap bit dengan aturan posisi tertentu seperti dalam standar IEEE 1 digit pertama merepresentasikan tanda negatif atau positif (S). Kemudian dilanjutkan 8 atau 11 digit berikutnya merupakan representasi eksponen dari angka (E). HIngga 23 atau 52 bit terakhir disebut sebagai mantissa yang merepresentasikan angka tersebut dengan digit paling kanan bernilai satu, kemudian digit kedua bernilai setengah, kemudian sebelahnya seperempat, demikian dijumlahkan apabila bernilai 1 dan diabaikan apabila bernilai 0 (F). Berikut adalah contoh konversinya.
+>> Generating Public Key : 
 
 ```cpp
-Bit = 1 1000 0001 011 0000 0000 0000 0000 0000
-S = 1 		E = 1000 0001	F = 011 0000 0000 0000 0000 0000
-(negatif)	pangkat 2 		representasi 1.375
-Sehingga, dalam pecahan bernilai -1,375×22 = -5,5
+Select two prime no's. Suppose P = 53 and Q = 59.
+		Now First part of the Public key  : n = P*Q = 3127.
+
+		
+ We also need a small exponent say e : 
+		But e Must be 
+
+		
+An integer.
+
+		
+Not be a factor of n.
+ 
+		
+1 < e < Φ(n) [Φ(n) is discussed below], 
+		Let us now consider it to be equal to 3.
+
+			
+Our Public Key is made of n and e
 ```
 
-Hal ini tentu saja memiliki dampak error yang cukup besar karena lompatan antar satu bilangan ke bilangan lainnya hanya dapat dilakukan mencapai 0,5 sehingga disinilah sebenarnya peran analisis numerik itu sendiri banyak dipakai. Namun tetap saja, walaupun sudah dilakukan banyak pendekatan, sangat dimungkinkan kesalahan. Sehingga dalam dunia nyata, tidak disarankan sebenarnya menggunakan perhitungan bilangan pecahan menggunakan komputer.
+>> Generating Private Key : 
+```cpp
+We need to calculate Φ(n) :
+		Such that Φ(n) = (P-1)(Q-1)     
+			  so,  Φ(n) = 3016
+
+			
+Now calculate Private Key, d : 
+		d = (k*Φ(n) + 1) / e for some integer k
+		For k = 2, value of d is 2011.
+```
+
+Now we are ready with our – Public Key ( n = 3127 and e = 3) and Private Key(d = 2011)
+Now we will encrypt “HI” : 
+
+```cpp
+Convert letters to numbers : H  = 8 and I = 9
+
+			
+Thus Encrypted Data c = 89e mod n. 
+		Thus our Encrypted Data comes out to be 1394
+
+
+		Now we will decrypt 1394 : 
+			
+Decrypted Data = cd mod n. 
+		Thus our Encrypted Data comes out to be 89
+
+		8 = H and I = 9 i.e. "HI".
+```
